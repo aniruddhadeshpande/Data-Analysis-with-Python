@@ -100,3 +100,77 @@ for order in polynomial_orders:
 K-Fold Cross-Validation Process (k=3)
 
 
+### **Model Evaluation and Refinement – Summary**
+
+* **Train-Test Split**
+
+  * Use `train_test_split()` to divide data into:
+
+    * **Training set** → train model & find predictive patterns
+    * **Test set** → evaluate model performance on unseen data
+
+* **Generalization Error**
+
+  * Measures how well a model predicts **new/unseen data**.
+  * Low generalization error = good model performance.
+
+* **Cross-Validation**
+
+  * Split data into **k folds**.
+  * Train on (k–1) folds and test on the remaining one.
+  * Repeat for all folds and average results to estimate **out-of-sample error**.
+
+* **Model Complexity**
+
+  * **Underfitting** → Model too simple (high bias).
+  * **Overfitting** → Model too complex (high variance).
+  * Choose polynomial order that **minimizes test error** (plot MSE vs polynomial order).
+
+* **Ridge Regression**
+
+  * Used when predictors are **highly correlated**.
+  * Prevents **overfitting** by penalizing large coefficients.
+  * Controlled by **hyperparameter α (alpha)**.
+
+* **Selecting Best α (Regularization Strength)**
+
+  * Split data into **training and validation sets**.
+  * Train model for different α values → compute **R²** on validation set.
+  * Choose α that **maximizes R²** (best generalization).
+
+* **Grid Search**
+
+  * Automates hyperparameter tuning using **cross-validation**.
+  * `GridSearchCV()` tests combinations of parameters and selects the best.
+  * Input: dictionary → `{ 'alpha': [0.01, 0.1, 1, 10] }`.
+
+---
+
+### **Diagram (Concept Flow)**
+
+```
+        +----------------+
+        |  Raw Dataset   |
+        +-------+--------+
+                |
+      ---------------------
+      |                   |
++-----------+       +-------------+
+| Train Set |       |  Test Set   |
++-----------+       +-------------+
+      |                     |
+  Model Training      Model Evaluation
+      |                     |
+      |       Cross-Validation (K-Folds)
+      |_____________________|
+               ↓
+     Evaluate Generalization Error
+               ↓
+   Optimize Polynomial Order / α
+               ↓
+        Grid Search → Best Model
+```
+
+
+
+
